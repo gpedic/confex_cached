@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.com/gpedic/confex_cached.svg?branch=master)](https://travis-ci.com/gpedic/confex_cached)
+[![Coverage Status](https://coveralls.io/repos/github/gpedic/confex_cached/badge.svg?branch=master)](https://coveralls.io/github/gpedic/confex_cached?branch=master)
+
 # ConfexCached
 
 A simple wrapper for confex adding caching functionality to `fetch_env` calls.
