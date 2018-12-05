@@ -7,7 +7,7 @@ defmodule ConfexCached.MixProject do
     [
       app: :confex_cached,
       version: @version,
-      elixir: "~> 1.6",
+      elixir: "~> 1.5",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       docs: [source_ref: "v#\{@version\}", main: "readme", extras: ["README.md"]],
