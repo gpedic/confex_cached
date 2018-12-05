@@ -50,9 +50,10 @@ defmodule ConfexCachedTest do
     assert {:ok, "asdf"} = ConfexCached.fetch_env(:myapp3, MyApp.Test)
   end
 
-  @tag create_app_env: {:myapp4, MyApp.Test, [text: "test"]}
   test "clear_cached_env" do
-    {:ok, env} = ConfexCached.fetch_env(:myapp4, MyApp.Test)
+    :ok = ConfexCached.set_cached_env(:myapp4, MyApp.Test, "test1234")
+    assert {:ok, "test1234"} = ConfexCached.fetch_env(:myapp4, MyApp.Test)
     assert :ok = ConfexCached.clear_cached_env(:myapp4, MyApp.Test)
+    assert :error = ConfexCached.fetch_env(:myapp4, MyApp.Test)
   end
 end
