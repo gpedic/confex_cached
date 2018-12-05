@@ -21,36 +21,31 @@ defmodule ConfexCached do
 
   @spec fetch_env(app :: atom(), key :: atom(), opts :: keyword()) :: {:ok, term()} | :error
   def fetch_env(app, key, opts \\ []) do
-    env = case @cache.get({app, key}, opts) do
-      nil -> Confex.fetch_env(app, key)
-      value -> {:cached, value}
-    end
-
-    case env do
-      {:ok, value} ->
-        @cache.put({app, key}, value, opts)
-        env
-      {:cached, value} ->
-        {:ok, value}
+    try do
+      {:ok, fetch_env!(app, key, opts)}
+    rescue
       _ -> :error
     end
   end
 
   @spec fetch_env!(app :: atom(), key :: atom(), opts :: keyword()) :: {:ok, term()} | :error
   def fetch_env!(app, key, opts \\ []) do
-    with {:ok, value} <- fetch_env(app, key, opts) do
-      value
-    else
-      _ ->
-        raise ArgumentError, "can't fetch value for key `#{inspect(key)}` of application `#{inspect(app)}`"
+    case @cache.get({app, key}, opts) do
+      nil ->
+        value = Confex.fetch_env!(app, key)
+        :ok = @cache.put({app, key}, value, opts)
+        value
+      value -> value
     end
   end
 
-  def clear_cached_env(app, key, opts \\ []) do
-    @cache.put({app, key}, nil, opts)
+  @spec delete_env_cache(app :: atom(), key :: atom(), opts :: keyword()) :: :ok | :error
+  def delete_env_cache(app, key, opts \\ []) do
+    @cache.delete({app, key}, opts)
   end
 
-  def set_cached_env(app, key, value, opts \\ []) do
+  @spec put_env_cache(app :: atom(), key :: atom(), value :: any(), opts :: keyword()) :: :ok | :error
+  def put_env_cache(app, key, value, opts \\ []) do
     @cache.put({app, key}, value, opts)
   end
 end

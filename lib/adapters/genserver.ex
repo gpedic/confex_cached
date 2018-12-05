@@ -26,6 +26,11 @@ defmodule ConfexCached.Cache.GenServer do
     GenServer.call(__MODULE__, {:get, key})
   end
 
+  @impl true
+  def delete(key, _opts) do
+    GenServer.call(__MODULE__, {:delete, key})
+  end
+
   # Server (callbacks)
 
   @impl true
@@ -36,5 +41,10 @@ defmodule ConfexCached.Cache.GenServer do
   @impl true
   def handle_call({:put, key, value}, _from, state) do
     {:reply, :ok, Map.put(state, key, value)}
+  end
+
+  @impl true
+  def handle_call({:delete, key}, _from, state) do
+    {:reply, :ok, Map.delete(state, key)}
   end
 end

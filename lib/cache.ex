@@ -15,4 +15,9 @@ defmodule ConfexCached.Cache do
   Cache a value
   """
   @callback put(key, value, opts) :: atom()
+
+  @doc """
+  Delete a cached value including it's key
+  """
+  @callback delete(key, opts) :: atom()
 end

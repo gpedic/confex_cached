@@ -22,14 +22,17 @@ Read the full [documentation](https://hexdocs.pm/confex_cached).
 
 ## Basic Usage
 
-Simply replace any calls to `Confex.fetch_env/2` or `Confex.fetch_env!/2` with `ConfexCached.fetch_env/3` and `ConfexCached.fetch_env!/3`. On the first call the whole response of `Confex.fetch_env` will be cached and subsequent calls will return the cached value.
+To start using ConfexCached simply replace any calls to `Confex.fetch_env/2` or `Confex.fetch_env!/2` with `ConfexCached.fetch_env/3` and `ConfexCached.fetch_env!/3`.
+
+After the first call the whole response will be cached and subsequent calls will return the cached value.
 
 The added third parameter `opts` is optional and is intened to be used as options keyword list for custom cache mechanisms.
 
-When using the basic GenServer based cache values are not refreshed until either the app is restarted or they are explicitly overriden using `Confex.clear_cached_env/3` or `Confex.set_cached_env/3`.
+When using the basic GenServer based cache the cached values stay cached until either the app is restarted or they are deleted or overriden via `Confex.delete_env_cache/3` or `Confex.put_env_cache/3`.
 
 ```elixir
-Confex.clear_cached_env(:myapp, MyApp.Example)
+ConfexCached.put_env_cache(:myapp, MyApp.Example, "hello")
+ConfexCached.delete_env_cache(:myapp, MyApp.Example)
 ```
 
 
