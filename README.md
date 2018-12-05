@@ -4,7 +4,7 @@
 # ConfexCached
 
 A simple wrapper for confex adding caching functionality to `fetch_env` calls.
-Mostly intened for use with [confex_parameter_store](https://github.com/gpedic/confex_parameter_store) as fetching parameters over http is much slower than fetching environment variables.
+Mostly intended to be used with [confex_parameter_store](https://github.com/gpedic/confex_parameter_store).
 
 ## Installation
 

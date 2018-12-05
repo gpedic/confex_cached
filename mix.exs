@@ -11,6 +11,7 @@ defmodule ConfexCached.MixProject do
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       docs: [source_ref: "v#\{@version\}", main: "readme", extras: ["README.md"]],
+      description: description(),
       package: package(),
       test_coverage: [tool: ExCoveralls]
     ]
@@ -40,5 +41,12 @@ defmodule ConfexCached.MixProject do
       links: %{github: "https://github.com/gpedic/confex_cached"},
       files: ~w(lib LICENSE mix.exs README.md)
     ]
+  end
+
+  defp description do
+    """
+    A simple wrapper for confex adding caching functionality to `fetch_env` calls.
+    Mostly intended for use with [confex_parameter_store](https://github.com/gpedic/confex_parameter_store).
+    """
   end
 end
