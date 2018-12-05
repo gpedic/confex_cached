@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.com/gpedic/confex_cached.svg?branch=master)](https://travis-ci.com/gpedic/confex_cached)
-[![Coverage Status](https://coveralls.io/repos/github/gpedic/confex_cached/badge.svg?branch=master)](https://coveralls.io/github/gpedic/confex_cached?branch=master)
+[![codecov](https://codecov.io/gh/gpedic/confex_cached/branch/master/graph/badge.svg)](https://codecov.io/gh/gpedic/confex_cached)
 
 # ConfexCached
 
